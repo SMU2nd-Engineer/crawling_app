@@ -65,7 +65,7 @@ def interparkCrawler():
 
   return total_data
 
-def save_data_to_excel():
+def save_interpark_to_excel():
   file_path = r'data\interpark\interpark.xlsx'
   total_data = interparkCrawler()
 

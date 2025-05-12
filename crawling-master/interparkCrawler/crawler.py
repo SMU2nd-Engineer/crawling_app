@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 import time
 
@@ -84,7 +84,7 @@ def ticket_info(driver, concert_ticket, visited_titles, start_idx, end_idx, curr
       visited_titles.add(title)
 
       driver.back()
-      time.sleep(1)
+      time.sleep(2)
       driver.execute_script(f"window.scrollTo(0, {current_scroll});")
       time.sleep(1)
 
@@ -116,7 +116,7 @@ def crawl_genre(driver, url, genre):
   }
 
   scroll_count = 1
-  driver.execute_script("window.scrollBy(0, 875);")
+  driver.execute_script("window.scrollBy(0, 878);")
 
   # 정보 수집 반복문
   while True:
@@ -128,7 +128,10 @@ def crawl_genre(driver, url, genre):
       scroll_count += 1
 
     elif scroll_count == 2:
-      ticket_info(driver, ticket_data, visited_titles, 6, 10, current_scroll, genre)
+      try:
+        ticket_info(driver, ticket_data, visited_titles, 6, 10, current_scroll, genre)
+      except TimeoutException:
+        ticket_info(driver, ticket_data, visited_titles, 6, 10, current_scroll, genre)
 
     driver.execute_script("window.scrollBy(0, 750);")
     time.sleep(2)
