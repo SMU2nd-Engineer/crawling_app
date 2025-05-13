@@ -66,7 +66,7 @@ def interparkCrawler():
   return total_data
 
 def save_interpark_to_excel():
-  file_path = r'data\interpark\interpark.xlsx'
+  file_path = r'data\interpark\interparkTicket.xlsx'
   total_data = interparkCrawler()
 
   # 파일 경로 존재 여부 확인 및 폴더 생성

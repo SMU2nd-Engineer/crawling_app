@@ -2,8 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
-from utils import create_driver
-from config import CATEGORY_DICT, GENRE_NUM_LIST
+from .utils import create_driver
+from .config import CATEGORY_DICT, GENRE_NUM_LIST
 
 def crawlPerformance():
     driver = create_driver(headless=False)

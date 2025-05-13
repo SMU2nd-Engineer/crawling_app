@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
-from utils import create_driver, get_current_year_month
+from .utils import create_driver, get_current_year_month
 
 def crawlSports(driver, teams: dict, genre: str) -> pd.DataFrame:
     driver = create_driver()
