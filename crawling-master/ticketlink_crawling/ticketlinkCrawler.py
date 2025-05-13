@@ -5,8 +5,8 @@ from utils import get_date_string
 import pandas as pd
 
 def ticketlinkCrawler():
-    savePathPerformance = f'../data/ticketPerformance_{get_date_string()}.xlsx'
-    savePathSports = f'../data/ticketSports_{get_date_string()}.xlsx'
+    savePathPerformance = f'data/ticketlink/ticketPerformance.xlsx'
+    savePathSports = f'data/ticketlink/ticketSports.xlsx'
 
     # 공연 데이터 엑셀저장
     df_performance = crawlPerformance()
