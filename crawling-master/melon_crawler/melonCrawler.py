@@ -10,10 +10,10 @@ from selenium.webdriver.common.by import By
 
 def melonCrawler():
     # 날짜 기반 엑셀파일 저장 포멧
-    dateFormat = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # dateFormat = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # 엑셀파일 상대경로로 저장 
-    fileName = f'../data/melonticket/melonPerformance_{dateFormat}_test.xlsx'
+    fileName = f'../data/melonticket/melonPerformance.xlsx'
 
     # 상대경로 지정된 폴더 없으면 저장 폴더 자동 생성 
     os.makedirs(os.path.dirname(fileName), exist_ok=True)
