@@ -4,8 +4,8 @@ import time
 import os
 import pandas as pd
 from datetime import datetime
-from base import createDriver, scrollToEnd
-from performance import getPerformanceDetails
+from melonCrawler.base import createDriver, scrollToEnd
+from melonCrawler.performance import getPerformanceDetails
 from selenium.webdriver.common.by import By
 
 def melonCrawler():
@@ -13,7 +13,7 @@ def melonCrawler():
     # dateFormat = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # 엑셀파일 상대경로로 저장 
-    fileName = f'../data/melonticket/melonPerformance.xlsx'
+    fileName = f'data/melon/melonTicket.xlsx'
 
     # 상대경로 지정된 폴더 없으면 저장 폴더 자동 생성 
     os.makedirs(os.path.dirname(fileName), exist_ok=True)
@@ -60,6 +60,3 @@ def melonCrawler():
 
     print("멜론티켓 Performance 엑셀 저장 완료.")
 
-# if __name__ == "__main__": 아래에 main 함수 호출
-if __name__ == "__main__":
-    melonCrawler()
