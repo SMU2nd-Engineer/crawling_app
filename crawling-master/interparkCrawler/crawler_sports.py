@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
 import time
+import re
+from datetime import datetime
 
 # 경기 날짜 추출 함수
 def parse_num_display(elements):
@@ -63,7 +65,8 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       date_str = parse_num_display(date_elements)
       time_str = parse_num_display(time_elements)
 
-      sdate = f'{date_str} {time_str}' if date_str and time_str else ''
+      current_year = datetime.now().year
+      sdate = f'{current_year}.' + re.sub(r'\(.*?\)', '', date_str)
       edate = sdate
 
       # 수집 시각 (등록일)
