@@ -31,3 +31,7 @@ def ticketlinkCrawler():
         df_handball.to_excel(writer, sheet_name="배구", index=False)
 
     print(f"엑셀 저장 완료: {savePath}")
+
+    df_all = pd.concat([df_performance, df_baseball, df_esports, df_soccer, df_icehockey, df_handball], ignore_index=True)
+
+    return df_all

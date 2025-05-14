@@ -84,7 +84,8 @@ def save_interpark_to_excel():
       print(f'[{sheet_name}] 시트 저장 완료')
 
   print(f'엑셀에 저장 완료: {file_path}')
-
+  
+  return total_data
 
 
 
