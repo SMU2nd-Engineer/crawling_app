@@ -4,7 +4,7 @@ import time
 import pandas as pd
 from .utils import create_driver, get_current_year_month
 
-def crawlSports(driver, teams: dict, genre: str) -> pd.DataFrame:
+def crawlSports(teams: dict, genre: str) -> pd.DataFrame:
     driver = create_driver()
     currentYear, currentMonth = get_current_year_month()
 
