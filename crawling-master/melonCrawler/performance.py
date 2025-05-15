@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from utils import greneToCode
 
 def getPerformanceDetails(driver, liList):
     # WebDriverWait을 사용하는 예시
@@ -19,7 +20,6 @@ def getPerformanceDetails(driver, liList):
 
     for i in range(len(liList)):
         try:
-            print(f"[{i+1}/{len(liList)}] 상세 정보 추출 시작...")
             listItem = liList[i]
             linkElement = listItem.find_element(By.TAG_NAME, 'a')
             hrefValue = linkElement.get_attribute('href')
@@ -48,8 +48,6 @@ def getPerformanceDetails(driver, liList):
             except NoSuchElementException:
                 pass
 
-            # 정보 파싱 시작
-            # class="tit" 인 정보 추출 - 제목 title
             try:
               titleElement = soup.select_one('.box_consert_txt .tit')
               title = titleElement.get_text(strip=True) if titleElement else "제목 정보 없음"
@@ -81,8 +79,6 @@ def getPerformanceDetails(driver, liList):
                 sdate = edate = ""
                 print(f"[{i+1}] 공연기간 추출 오류: {e}")
 
-            print(f"[{i+1}] 공연기간(시작종료일): {sdate} ~ {edate}")
-
             # 장소 place 정보 추출
             try:            
               placeElement = soup.select_one('.box_consert_txt .box_consert_info .info_right .place')
@@ -91,8 +87,6 @@ def getPerformanceDetails(driver, liList):
                  placeElement = "" 
                  print(f"[{i+1}] 장소 추출 오류: {e}")  
 
-            print(f"[{i+1}] 장소: {place}")    
-
               # 가격 price 정보 추출
             try:
                 priceElement = soup.select('.box_bace_price ul li')
@@ -100,12 +94,10 @@ def getPerformanceDetails(driver, liList):
                     priceList = [priceInformation.get_text(strip=True) for priceInformation in priceElement if priceInformation.get_text(strip=True)]
                     price = '/'.join(priceList)
                 else:
-                    price = "가격 정보 없음"
+                    price = " "
             except Exception as e:
-                price = ""
+                price = " " 
                 print(f"[{i+1}] 가격 추출 오류: {e}") 
-
-            print(f"[{i+1}] 가격: {price}")
 
             # 관람연령 grade 정보 추출
             try:           
@@ -114,8 +106,6 @@ def getPerformanceDetails(driver, liList):
             except Exception as e:
                 gradeElement = ""
                 print(f"[{i+1}] 관람연령 추출 오류: {e}")   
-
-            print(f"[{i+1}] 관람연령: {grade}")              
 
             # 출연진 cast 정보 추출
             cast = ''
@@ -129,8 +119,6 @@ def getPerformanceDetails(driver, liList):
                 cast = ""
                 print(f"[{i+1}] 출연진 추출 오류: {e}")
 
-            print(f"[{i+1}] 출연진: {cast}")                
-
             # 공연기간(러닝타임) runningtime 정보 추출
             try:
                 runningtimeElement = soup.select_one('.box_consert_txt .box_consert_info .info_left dd:nth-child(4)')
@@ -139,32 +127,24 @@ def getPerformanceDetails(driver, liList):
                 runningtimeElement = ""
                 print(f"[{i+1}] 공연기간 추출 오류: {e}") 
 
-            print(f"[{i+1}] 공연기간: {runningtime}")                
-
             # 이미지 img 정보 추출
             try:
                 imgElement = soup.select_one('.box_consert_thumb.thumb_180x254 img')
                 img = imgElement['src'] if imgElement and imgElement.has_attr('src') else "이미지 정보 없음"
             except Exception as e:
                 imgElement = ""
-                print(f"[{i+1}] 이미지 추출 오류: {e}")
-
-            print(f"[{i+1}] 이미지: {img}")                
+                print(f"[{i+1}] 이미지 추출 오류: {e}")     
 
             # genre(장르) 정보 추출
             try:
               categoryElement = soup.select_one('.box_consert_txt .box_consert_info .info_left dd:nth-child(6)')
-              category = categoryElement.get_text(strip=True) if categoryElement else "장르 정보 없음"
-
-              # '기타'이면 '콘서트'로 변경
-              if category == "기타":
-                  category = "콘서트"
+              category = greneToCode( categoryElement.get_text(strip=True))
+              
 
             except Exception as e:
               categoryElement = ""
               print(f"[{i+1}] 장르 추출 오류: {e}")
-
-            print(f"[{i+1}] 장르: {category}")                
+      
 
             # 공연시간 정보 etc 정보 추출
             try:
@@ -184,8 +164,6 @@ def getPerformanceDetails(driver, liList):
                 etc = ""
                 print(f"[{i+1}] 공연시간 정보 추출 오류: {e}")
 
-            print(f"[{i+1}] 공연시간 정보: {etc}")
-
             # 필수 정보 체크 후 저장
             try:
                 defualtD = [title, sdate, edate]
@@ -202,7 +180,7 @@ def getPerformanceDetails(driver, liList):
                         'cast': cast,
                         'runningtime': runningtime,
                         'img': img,
-                        'genre': category,
+                        'sub_idx': category,
                         'etc': etc
                     })
                 else:

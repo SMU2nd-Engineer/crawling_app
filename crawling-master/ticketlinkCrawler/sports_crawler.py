@@ -4,7 +4,7 @@ import time
 import pandas as pd
 from .utils import create_driver, get_current_year_month
 
-def crawlSports(teams: dict, genre: str) -> pd.DataFrame:
+def crawlSports(teams: dict, genre: int) -> pd.DataFrame:
     driver = create_driver()
     currentYear, currentMonth = get_current_year_month()
 
@@ -13,7 +13,6 @@ def crawlSports(teams: dict, genre: str) -> pd.DataFrame:
 
     for team_url, team_name in teams.items():
         url = "https://www.ticketlink.co.kr" + team_url
-        print(f"접속 중: {team_name} -> {url}")
         driver.get(url)
         time.sleep(2)
 
@@ -24,7 +23,6 @@ def crawlSports(teams: dict, genre: str) -> pd.DataFrame:
 
         try:
             matches = driver.find_elements(By.CSS_SELECTOR, "div.reserve_lst_bx > ul > li")
-            print(f"{team_name} 경기 수: {len(matches)}개")
 
             for match in range(1, len(matches) + 1):
                 try:
@@ -77,7 +75,7 @@ def crawlSports(teams: dict, genre: str) -> pd.DataFrame:
                         'cast': "",
                         'runningtime': "",
                         'img': mainTeamLogoImage,
-                        'genre': genre,
+                        'sub_idx': genre,
                         'etc': gameTime
                     }
                     time.sleep(2)

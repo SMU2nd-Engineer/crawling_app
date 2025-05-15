@@ -82,7 +82,7 @@ def ticket_info(driver, concert_ticket, visited_titles, start_idx, end_idx, curr
       concert_ticket['cast'].append(cast)
       concert_ticket['runningtime'].append(runningtime)
       concert_ticket['img'].append(img)
-      concert_ticket['genre'].append(genre)
+      concert_ticket['sub_idx'].append(genre)
       concert_ticket['etc'].append(etc)
 
       visited_titles.add(title)
@@ -116,7 +116,7 @@ def crawl_genre(driver, url, genre):
   ticket_data = {
     'title': [], 'company': [], 'link': [], 'sdate': [], 'edate': [],
     'place': [], 'price': [], 'grade': [], 'cast': [], 'runningtime': [],
-    'img': [], 'genre': [], 'etc': []
+    'img': [], 'sub_idx': [], 'etc': []
   }
 
   scroll_count = 1

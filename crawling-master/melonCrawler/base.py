@@ -5,7 +5,6 @@ import time
 
 # 페이지 끝까지 스크롤하는 함수
 def scrollToEnd(driver):
-    """페이지 끝까지 스크롤합니다."""
     lastHeight = driver.execute_script("return document.body.scrollHeight")
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -17,7 +16,6 @@ def scrollToEnd(driver):
 
 # create_driver 함수 (get_driver와 동일)
 def createDriver():
-    """웹 드라이버를 설정하고 반환합니다."""
     chrome_options = Options()
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--start-maximized")

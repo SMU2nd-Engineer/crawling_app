@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from ticketlinkCrawler.config import SPORTS_NUM
 
 import time
 import re
@@ -41,7 +42,7 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
     'cast': [],
     'runningtime': [],
     'img': [],
-    'genre': [],
+    'sub_idx': [],
     'etc': []
   }
   
@@ -91,7 +92,7 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       sports_ticket['cast'].append('')
       sports_ticket['runningtime'].append('')
       sports_ticket['img'].append(img)
-      sports_ticket['genre'].append('스포츠')
+      sports_ticket['sub_idx'].append(SPORTS_NUM)
       sports_ticket['etc'].append(etc)
 
       print({k: sports_ticket[k][-1] for k in sports_ticket})
@@ -107,7 +108,7 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
   return sports_ticket
 
 
-def crawl_sports(driver, sport_name, sport_url):
+def crawl_sports(driver, sport_url):
   driver.get(sport_url)
   time.sleep(1)
 
@@ -115,7 +116,7 @@ def crawl_sports(driver, sport_name, sport_url):
   all_tickets = {
     'title': [], 'company': [], 'link': [], 'sdate': [], 'edate': [], 'pdate': [],
     'place': [], 'price': [], 'grade': [], 'cast': [], 'runningtime': [],
-    'img': [], 'genre': [], 'etc': []
+    'img': [], 'sub_idx': [], 'etc': []
   }
 
   # 예매카드 있는지 확인
@@ -143,26 +144,27 @@ def crawl_sports(driver, sport_name, sport_url):
     while True:
       try:
         driver.execute_script("window.scrollBy(0, 500)")
+        time.sleep(1)
         # 더보기 버튼 찾기
         more_button = driver.find_element(By.CSS_SELECTOR, 'a.moreBtn')
-
+        
         more_button.click()
-        time.sleep(1)
+        time.sleep(2)
 
-      except ElementNotInteractableException:
-        print('더보기 버튼이 비활성화 되었습니다.')
+      except (ElementNotInteractableException, NoSuchElementException) as errorCode:
+        print(f'더보기 버튼 못찾음:{errorCode.msg}')
         driver.execute_script("window.scrollTo(0, 500)")
         break
       except Exception as e:
         print(f'예외 발생:{e}')
         break
 
-  # 티켓 개수      
-  count_ticket = driver.find_elements(By.CLASS_NAME, 'timeSchedule')
-  ticket_data = sports_ticket_info(driver, len(count_ticket), img, current_url)
+    # 티켓 개수      
+    count_ticket = driver.find_elements(By.CLASS_NAME, 'timeSchedule')
+    ticket_data = sports_ticket_info(driver, len(count_ticket), img, current_url)
 
-  # 키(sport_url)별로 데이터 누적 저장하기
-  for key in all_tickets:
-    all_tickets[key].extend(ticket_data[key])
+    # 키(sport_url)별로 데이터 누적 저장하기
+    for key in all_tickets:
+      all_tickets[key].extend(ticket_data[key])
 
   return all_tickets
