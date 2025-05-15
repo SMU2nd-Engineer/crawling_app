@@ -20,7 +20,6 @@ def crawlPerformance():
 
     for countryNum in range(1, len(countryLength) + 1):
         countryButton = driver.find_element(By.XPATH, f'//*[@id="content"]/section[1]/div/div/div/ul/li[{countryNum}]/button')
-        countryName = driver.find_element(By.CSS_SELECTOR, f'section.common_section.section_list_title > div > div > div > ul > li:nth-child({countryNum}) > button').text
         countryButton.click()
         time.sleep(1)
 
@@ -31,7 +30,6 @@ def crawlPerformance():
 
         for genreNum in GENRE_NUM_LIST:
             listLength[genreNum] = len(driver.find_elements(By.XPATH, f'//*[@id="genre_{genreNum}"]/div/div/ul/li'))
-            print(f"지역: {countryName}, 카테고리: {CATEGORY_DICT.get(genreNum, '기타')}, 항목 수: {listLength[genreNum]}")
 
         # 카테고리 버튼 한 번씩 클릭
         for locationNum in range(1, len(GENRE_NUM_LIST) + 1):
@@ -49,16 +47,12 @@ def crawlPerformance():
               driver.execute_script(f"window.scrollTo(0, {scrollHeight})")
               time.sleep(1)
 
-            # 현재 스크롤 위치 확인
-            # print(f"현재 스크롤 위치는 : {scrollHeight} 입니다.")
-
             # 저장된 스크롤 위치로 이동
             driver.execute_script(f"window.scrollTo(0, {scrollHeight})")
             time.sleep(2)
 
             try:
               selectedElement = driver.find_element(By.XPATH, f'//*[@id="genre_{GENRE_NUM_LIST[locationNum-1]}"]/div/div/ul/li[{liNum}]')
-              # driver.execute_script("arguments[0].scrollIntoView();", element)  # 보이게 스크롤
               time.sleep(2)
 
               # 상세정보 클릭
@@ -123,7 +117,7 @@ def crawlPerformance():
                   'cast': artist,
                   'runningtime': runningTime,
                   'img': image,
-                  'genre': category,
+                  'sub_idx': category,
                   'etc': etc
               }
 

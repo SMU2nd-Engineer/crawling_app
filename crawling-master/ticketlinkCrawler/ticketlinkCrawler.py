@@ -1,6 +1,6 @@
 from ticketlinkCrawler.perfomance_crawler import crawlPerformance
 from .sports_crawler import crawlSports
-from .config import BASEBALL_TEAMS, ESPORTS_TEAMS, SOCCER_TEAMS, ICEHOCKEY_TEAMS, HANDBALL_TEAMS
+from .config import BASEBALL_TEAMS, ESPORTS_TEAMS, SOCCER_TEAMS, ICEHOCKEY_TEAMS, HANDBALL_TEAMS, SPORTS_NUM
 import pandas as pd
 import os
 
@@ -16,21 +16,19 @@ def ticketlinkCrawler():
     df_performance = crawlPerformance()
 
     # 스포츠 데이터
-    df_baseball = crawlSports(BASEBALL_TEAMS, "야구")
-    df_esports = crawlSports(ESPORTS_TEAMS, "이스포츠")
-    df_soccer = crawlSports(SOCCER_TEAMS, "축구")
-    df_icehockey = crawlSports(ICEHOCKEY_TEAMS, "아이스하키")
-    df_handball = crawlSports(HANDBALL_TEAMS, "배구")
+    df_baseball = crawlSports(BASEBALL_TEAMS, SPORTS_NUM)
+    df_esports = crawlSports(ESPORTS_TEAMS, SPORTS_NUM)
+    df_soccer = crawlSports(SOCCER_TEAMS, SPORTS_NUM)
+    df_icehockey = crawlSports(ICEHOCKEY_TEAMS, SPORTS_NUM)
+    df_handball = crawlSports(HANDBALL_TEAMS, SPORTS_NUM)
 
-    with pd.ExcelWriter(savePath) as writer:
+    with pd.ExcelWriter(savePath, engine='xlsxwriter') as writer:
         df_performance.to_excel(writer, sheet_name="공연", index=False)
         df_baseball.to_excel(writer, sheet_name="야구", index=False)
         df_esports.to_excel(writer, sheet_name="이스포츠", index=False)
         df_soccer.to_excel(writer, sheet_name="축구", index=False)
         df_icehockey.to_excel(writer, sheet_name="아이스하키", index=False)
         df_handball.to_excel(writer, sheet_name="배구", index=False)
-
-    print(f"엑셀 저장 완료: {savePath}")
 
     df_all = pd.concat([df_performance, df_baseball, df_esports, df_soccer, df_icehockey, df_handball], ignore_index=True)
 
