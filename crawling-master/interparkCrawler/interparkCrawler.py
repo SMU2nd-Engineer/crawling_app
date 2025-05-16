@@ -15,13 +15,13 @@ def interparkCrawler():
   # 공연
   # 장르 리스트: (url, 초기 스크롤 위치, 장르명)
   genres = [
-      # ("https://tickets.interpark.com/contents/genre/concert", 3001),
-      # ("https://tickets.interpark.com/contents/genre/musical", 3002),
-      # ("https://tickets.interpark.com/contents/genre/classic", 3005),
+      ("https://tickets.interpark.com/contents/genre/concert", 3001),
+      ("https://tickets.interpark.com/contents/genre/musical", 3002),
+      ("https://tickets.interpark.com/contents/genre/classic", 3005),
       ("https://tickets.interpark.com/contents/genre/exhibition", 3004)
-  #     ("https://tickets.interpark.com/contents/genre/play", 3003),
-  #     ("https://tickets.interpark.com/contents/genre/family", 3006),
-  #     ("https://tickets.interpark.com/contents/genre/leisure", 3007)
+      ("https://tickets.interpark.com/contents/genre/play", 3003),
+      ("https://tickets.interpark.com/contents/genre/family", 3006),
+      ("https://tickets.interpark.com/contents/genre/leisure", 3007)
   ]
 
   # 공연 장르 반복
@@ -33,34 +33,34 @@ def interparkCrawler():
 
   driver.quit()
 
-  # # 드라이버는 공연과 스포츠 별도로 사용
-  # driver = get_driver()
-  # sports_data = []
+  # 드라이버는 공연과 스포츠 별도로 사용
+  driver = get_driver()
+  sports_data = []
 
-  # # 스포츠
-  # # 스포츠 리스트
-  # sports_list = [
-  #   'https://ticket.interpark.com/Contents/Sports/Bridge/baseball',
-  #   'https://ticket.interpark.com/Contents/Sports/Bridge/Soccer',
-  #   'https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07032&TeamCode=PE015',
-  #   'https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07032&TeamCode=PE023'
-  # ]
+  # 스포츠
+  # 스포츠 리스트
+  sports_list = [
+    'https://ticket.interpark.com/Contents/Sports/Bridge/baseball',
+    'https://ticket.interpark.com/Contents/Sports/Bridge/Soccer',
+    'https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07032&TeamCode=PE015',
+    'https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07032&TeamCode=PE023'
+  ]
 
-  # # 스포츠 반복
-  # for sport_url in sports_list:
-  #   sports_ticket_data = crawl_sports(driver, sport_url)
-  #   if sports_ticket_data:
-  #     df = pd.DataFrame(sports_ticket_data)
-  #     sports_data.append(df)
+  # 스포츠 반복
+  for sport_url in sports_list:
+    sports_ticket_data = crawl_sports(driver, sport_url)
+    if sports_ticket_data:
+      df = pd.DataFrame(sports_ticket_data)
+      sports_data.append(df)
 
-  # driver.quit()
+  driver.quit()
 
-  all_genre_data = pd.concat(all_data.values(), ignore_index=True) if all_data else pd.DataFrame()
-  # all_sports_data = pd.concat(sports_data, ignore_index=True) if sports_data else pd.DataFrame()
+  all_genre_data = pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
+  all_sports_data = pd.concat(sports_data, ignore_index=True) if sports_data else pd.DataFrame()
 
-  # total_data = pd.concat([all_genre_data, all_sports_data], ignore_index=True)
+  total_data = pd.concat([all_genre_data, all_sports_data], ignore_index=True)
 
-  return all_genre_data
+  return total_data
 
 def save_interpark_to_excel():
   file_path = r'data\interpark\interparkTicket.xlsx'

@@ -24,24 +24,24 @@ def main():
         traceback.print_exc()
 
     # 인터파크 DB 저장
-    try:
-        interpark.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
-        print("Interpark 데이터 DB 저장 완료")
-    except Exception as e:
-        print("Interpark 데이터 DB 저장 중 오류가 발생했습니다. ")
-        print(f"에러: {e}")
-        traceback.print_exc()
-
-    # # 멜론 크롤링
-    # melon = pd.DataFrame()
     # try:
-    #     print("Melon 크롤링을 진행 합니다.")
-    #     melon = melonCrawler()
-    #     print("Melon 크롤링이 완료 되었습니다.\n")
+    #     interpark.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
+    #     print("Interpark 데이터 DB 저장 완료")
     # except Exception as e:
-    #     print("Melon 크롤링 중 오류가 발생했습니다.")
+    #     print("Interpark 데이터 DB 저장 중 오류가 발생했습니다. ")
     #     print(f"에러: {e}")
     #     traceback.print_exc()
+
+    # 멜론 크롤링
+    melon = pd.DataFrame()
+    try:
+        print("Melon 크롤링을 진행 합니다.")
+        melon = melonCrawler()
+        print("Melon 크롤링이 완료 되었습니다.\n")
+    except Exception as e:
+        print("Melon 크롤링 중 오류가 발생했습니다.")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
     # # 멜론 DB 저장
     # try:
@@ -52,16 +52,16 @@ def main():
     #     print(f"에러: {e}")
     #     traceback.print_exc()
 
-    # # 티켓링크 크롤링
-    # ticketlink = pd.DataFrame()
-    # try:
-    #     print("Ticketlink 크롤링을 진행 합니다.")
-    #     ticketlink = ticketlinkCrawler()
-    #     print("Ticketlink 크롤링이 완료 되었습니다.\n")
-    # except Exception as e:
-    #     print("Ticketlink 크롤링 중 오류가 발생했습니다.")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    # 티켓링크 크롤링
+    ticketlink = pd.DataFrame()
+    try:
+        print("Ticketlink 크롤링을 진행 합니다.")
+        ticketlink = ticketlinkCrawler()
+        print("Ticketlink 크롤링이 완료 되었습니다.\n")
+    except Exception as e:
+        print("Ticketlink 크롤링 중 오류가 발생했습니다.")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
     # # 티켓링크 DB 저장
     # try:
@@ -73,7 +73,4 @@ def main():
     #     traceback.print_exc()
 
 if __name__ == "__main__":
-    # 테스트
-    # test = pd.read_excel('C:/DEV/crawling/data/testData/ticketPerformance_20250512_160139.xlsx')
-    # test.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append',index=False)
     main()
