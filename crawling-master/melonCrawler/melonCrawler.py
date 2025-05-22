@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 
 def melonCrawler():
     # 엑셀파일 상대경로로 저장 
-    fileName = f'data/melon/melonTicket.xlsx'
+    fileName = r'data\melon\melonTicket.xlsx'
 
     # 상대경로 지정된 폴더 없으면 저장 폴더 자동 생성 
     os.makedirs(os.path.dirname(fileName), exist_ok=True)
@@ -44,6 +44,6 @@ def melonCrawler():
     # 데이터 프레임으로 변환하여 엑셀 저장
     df = pd.DataFrame(totalDetailData)
     with pd.ExcelWriter(fileName, engine='xlsxwriter', mode='w') as writer:
-        df.to_excel(writer, fileName, index=False)
+        df.to_excel(writer, index=False)
     
     return df

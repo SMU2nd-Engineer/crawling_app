@@ -107,6 +107,7 @@ def crawlPerformance():
 
               detailData = {
                   'title': title,
+                  'sub_idx': category,
                   'company': "티켓링크",
                   'link': link,
                   'sdate': sdate,
@@ -117,7 +118,6 @@ def crawlPerformance():
                   'cast': artist,
                   'runningtime': runningTime,
                   'img': image,
-                  'sub_idx': category,
                   'etc': etc
               }
 
