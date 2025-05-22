@@ -11,6 +11,7 @@ def interparkCrawler():
   all_data = []
 
   driver = get_driver()
+  driver.set_page_load_timeout(30)
 
   # 공연
   # 장르 리스트: (url, 초기 스크롤 위치, 장르명)
@@ -18,7 +19,7 @@ def interparkCrawler():
       ("https://tickets.interpark.com/contents/genre/concert", 3001),
       ("https://tickets.interpark.com/contents/genre/musical", 3002),
       ("https://tickets.interpark.com/contents/genre/classic", 3005),
-      ("https://tickets.interpark.com/contents/genre/exhibition", 3004)
+      ("https://tickets.interpark.com/contents/genre/exhibition", 3004),
       ("https://tickets.interpark.com/contents/genre/play", 3003),
       ("https://tickets.interpark.com/contents/genre/family", 3006),
       ("https://tickets.interpark.com/contents/genre/leisure", 3007)
@@ -63,11 +64,11 @@ def interparkCrawler():
   return total_data
 
 def save_interpark_to_excel():
-  file_path = r'data\interpark\interparkTicket.xlsx'
+  dir_name = 'data/interpark'
+  file_path = os.path.join(dir_name, 'interparkTicket.xlsx')
   total_data = interparkCrawler()
 
   # 파일 경로 존재 여부 확인 및 폴더 생성
-  dir_name = os.path.dirname(file_path)
   if not os.path.exists(dir_name):
     os.makedirs(dir_name)
 

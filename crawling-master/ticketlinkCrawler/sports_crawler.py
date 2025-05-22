@@ -65,6 +65,7 @@ def crawlSports(teams: dict, genre: int) -> pd.DataFrame:
                     time.sleep(2)
                     detailData = {
                         'title': matchTotal,
+                        'sub_idx': genre,
                         'company': "티켓링크",
                         'link': link,
                         'sdate': date,
@@ -75,7 +76,6 @@ def crawlSports(teams: dict, genre: int) -> pd.DataFrame:
                         'cast': "",
                         'runningtime': "",
                         'img': mainTeamLogoImage,
-                        'sub_idx': genre,
                         'etc': gameTime
                     }
                     time.sleep(2)

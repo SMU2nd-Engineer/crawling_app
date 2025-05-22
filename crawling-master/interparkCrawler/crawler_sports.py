@@ -114,9 +114,9 @@ def crawl_sports(driver, sport_url):
 
   # 티켓정보 가져오기
   all_tickets = {
-    'title': [], 'company': [], 'link': [], 'sdate': [], 'edate': [], 'pdate': [],
+    'title': [], 'sub_idx': [], 'company': [], 'link': [], 'sdate': [], 'edate': [], 'pdate': [],
     'place': [], 'price': [], 'grade': [], 'cast': [], 'runningtime': [],
-    'img': [], 'sub_idx': [], 'etc': []
+    'img': [], 'etc': []
   }
 
   # 예매카드 있는지 확인
