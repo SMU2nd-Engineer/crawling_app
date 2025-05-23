@@ -169,8 +169,8 @@ def getPerformanceDetails(driver, liList):
                 defualtD = [title, sdate, edate]
                 if all("정보 없음" not in val for val in defualtD):
                     detailDataList.append({
-                        'title': title,
                         'sub_idx': category,
+                        'title': title,
                         'company': '멜론티켓',
                         'link': link,
                         'sdate': sdate,

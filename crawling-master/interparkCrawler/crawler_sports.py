@@ -80,6 +80,7 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       etc = time_str
 
       # sports_ticket에 직접 저장
+      sports_ticket['sub_idx'].append(SPORTS_NUM)
       sports_ticket['title'].append(title)
       sports_ticket['company'].append("인터파크")  # 고정값
       sports_ticket['link'].append(current_url)
@@ -92,7 +93,6 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       sports_ticket['cast'].append('')
       sports_ticket['runningtime'].append('')
       sports_ticket['img'].append(img)
-      sports_ticket['sub_idx'].append(SPORTS_NUM)
       sports_ticket['etc'].append(etc)
 
       print({k: sports_ticket[k][-1] for k in sports_ticket})

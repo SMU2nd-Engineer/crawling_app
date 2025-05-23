@@ -96,6 +96,7 @@ def ticket_info(driver, concert_ticket, visited_titles, start_idx, end_idx, curr
         etc = ""
 
       # 모든 값 저장
+      concert_ticket['sub_idx'].append(genre)
       concert_ticket['title'].append(title)
       concert_ticket['company'].append("인터파크")
       concert_ticket['link'].append(current_url)
@@ -107,7 +108,6 @@ def ticket_info(driver, concert_ticket, visited_titles, start_idx, end_idx, curr
       concert_ticket['cast'].append(cast)
       concert_ticket['runningtime'].append(runningtime)
       concert_ticket['img'].append(img)
-      concert_ticket['sub_idx'].append(genre)
       concert_ticket['etc'].append(etc)
 
       visited_titles.add(title)
