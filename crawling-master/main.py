@@ -33,15 +33,15 @@ def main():
     #     traceback.print_exc()
 
     # # 멜론 크롤링
-    # melon = pd.DataFrame()
-    # try:
-    #     print("Melon 크롤링을 진행 합니다.")
-    #     melon = melonCrawler()
-    #     print("Melon 크롤링이 완료 되었습니다.\n")
-    # except Exception as e:
-    #     print("Melon 크롤링 중 오류가 발생했습니다.")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    melon = pd.DataFrame()
+    try:
+        print("Melon 크롤링을 진행 합니다.")
+        melon = melonCrawler()
+        print("Melon 크롤링이 완료 되었습니다.\n")
+    except Exception as e:
+        print("Melon 크롤링 중 오류가 발생했습니다.")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
     # # 멜론 DB 저장
     # try:
@@ -53,15 +53,15 @@ def main():
     #     traceback.print_exc()
 
     # # 티켓링크 크롤링
-    # ticketlink = pd.DataFrame()
-    # try:
-    #     print("Ticketlink 크롤링을 진행 합니다.")
-    #     ticketlink = ticketlinkCrawler()
-    #     print("Ticketlink 크롤링이 완료 되었습니다.\n")
-    # except Exception as e:
-    #     print("Ticketlink 크롤링 중 오류가 발생했습니다.")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    ticketlink = pd.DataFrame()
+    try:
+        print("Ticketlink 크롤링을 진행 합니다.")
+        ticketlink = ticketlinkCrawler()
+        print("Ticketlink 크롤링이 완료 되었습니다.\n")
+    except Exception as e:
+        print("Ticketlink 크롤링 중 오류가 발생했습니다.")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
     # # 티켓링크 DB 저장
     # try:

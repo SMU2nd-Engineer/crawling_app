@@ -88,7 +88,7 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       sports_ticket['edate'].append(edate)
       sports_ticket['pdate'].append(pdate)
       sports_ticket['place'].append(place)
-      sports_ticket['price'].append('')
+      sports_ticket['price'].append(0)
       sports_ticket['grade'].append('전연령')
       sports_ticket['cast'].append('')
       sports_ticket['runningtime'].append('')
@@ -114,7 +114,7 @@ def crawl_sports(driver, sport_url):
 
   # 티켓정보 가져오기
   all_tickets = {
-    'title': [], 'sub_idx': [], 'company': [], 'link': [], 'sdate': [], 'edate': [], 'pdate': [],
+    'sub_idx': [], 'title': [], 'company': [], 'link': [], 'sdate': [], 'edate': [], 'pdate': [],
     'place': [], 'price': [], 'grade': [], 'cast': [], 'runningtime': [],
     'img': [], 'etc': []
   }
@@ -138,7 +138,9 @@ def crawl_sports(driver, sport_url):
       xpath_booking = f'//*[@id="container"]/div/div[2]/ul/li[{k}]/div/button'
       driver.find_element(By.XPATH, xpath_booking).click()
       time.sleep(2)
-      current_url = driver.current_url
+
+    # 최근 링크
+    current_url = driver.current_url
     k += 1
     # 더보기 버튼
     while True:
