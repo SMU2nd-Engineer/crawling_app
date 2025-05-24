@@ -55,7 +55,7 @@ def ticket_info(driver, concert_ticket, visited_titles, start_idx, end_idx, curr
       sdate, edate = (period.split(" ~") if " ~" in period else (period, period))
       # edate가 '오픈런' 일때 값 변경하기
       if edate.strip() == '오픈런':
-        sdate = edate
+        edate = sdate
         
       place = driver.find_element(By.CSS_SELECTOR, ".infoBtn").text.replace("(자세히)", "")
       img = driver.find_element(By.CSS_SELECTOR, ".posterBoxImage").get_attribute("src")
