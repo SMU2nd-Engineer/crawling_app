@@ -3,14 +3,18 @@
 import time
 import os
 import pandas as pd
-from datetime import datetime
 from melonCrawler.base import createDriver, scrollToEnd
 from melonCrawler.performance import getPerformanceDetails
 from selenium.webdriver.common.by import By
+from datetime import datetime
 
 def melonCrawler():
+    # 현재 날짜 및 시간 가져오기
+    now = datetime.now()
+    timestamp = now.strftime('%Y-%m-%d_%H-%M-%S')
+
     # 엑셀파일 상대경로로 저장 
-    fileName = r'data\melon\melonTicket.xlsx'
+    fileName = fr'data\melon\melonTicket_{timestamp}.xlsx'
 
     # 상대경로 지정된 폴더 없으면 저장 폴더 자동 생성 
     os.makedirs(os.path.dirname(fileName), exist_ok=True)

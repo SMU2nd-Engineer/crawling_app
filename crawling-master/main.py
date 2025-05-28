@@ -24,15 +24,15 @@ def main():
         traceback.print_exc()
 
     # 인터파크 DB 저장
-    # try:
-    #     interpark.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
-    #     print("Interpark 데이터 DB 저장 완료")
-    # except Exception as e:
-    #     print("Interpark 데이터 DB 저장 중 오류가 발생했습니다. ")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    try:
+        interpark.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
+        print("Interpark 데이터 DB 저장 완료")
+    except Exception as e:
+        print("Interpark 데이터 DB 저장 중 오류가 발생했습니다. ")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
-    # # 멜론 크롤링
+    # 멜론 크롤링
     melon = pd.DataFrame()
     try:
         print("Melon 크롤링을 진행 합니다.")
@@ -43,14 +43,14 @@ def main():
         print(f"에러: {e}")
         traceback.print_exc()
 
-    # # 멜론 DB 저장
-    # try:
-    #     melon.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
-    #     print("Melon 데이터 DB 저장 완료")
-    # except Exception as e:
-    #     print("Melon 데이터 DB 저장 중 오류가 발생했습니다. ")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    # 멜론 DB 저장
+    try:
+        melon.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
+        print("Melon 데이터 DB 저장 완료")
+    except Exception as e:
+        print("Melon 데이터 DB 저장 중 오류가 발생했습니다. ")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
     # # 티켓링크 크롤링
     ticketlink = pd.DataFrame()
@@ -63,14 +63,14 @@ def main():
         print(f"에러: {e}")
         traceback.print_exc()
 
-    # # 티켓링크 DB 저장
-    # try:
-    #     ticketlink.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
-    #     print("Ticketlink 데이터 DB 저장 완료")
-    # except Exception as e:
-    #     print("Ticketlink 데이터 DB 저장 중 오류가 발생했습니다. ")
-    #     print(f"에러: {e}")
-    #     traceback.print_exc()
+    # 티켓링크 DB 저장
+    try:
+        ticketlink.to_sql(name='ticket_tbl', con=DB_CONNECTION_STR,  if_exists='append', index=False)
+        print("Ticketlink 데이터 DB 저장 완료")
+    except Exception as e:
+        print("Ticketlink 데이터 DB 저장 중 오류가 발생했습니다. ")
+        print(f"에러: {e}")
+        traceback.print_exc()
 
 if __name__ == "__main__":
     main()

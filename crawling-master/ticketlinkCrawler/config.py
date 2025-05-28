@@ -48,12 +48,32 @@ HANDBALL_TEAMS = {
 CATEGORY_DICT = {
     16: 3002,
     14: 3001,
+    15: 3003,
     18: 3005,
     85: 3006,
-    15: 3003,
     24: 3004,
     65: 3007
 }
+# //*[@id="genre_16"]/div/div/ul/li[1]
+# //*[@id="genre_14"]/div[2]/div/ul/li[1]
+# //*[@id="genre_15"]/div[2]/div/ul/li[1]
+# //*[@id="genre_18"]/div[2]/div/ul/li[1]
+# //*[@id="genre_85"]/div[2]/div/ul/li[1]
+# //*[@id="genre_24"]/div[2]/div/ul/li[1]
+# //*[@id="genre_65"]/div[2]/div/ul/li[1]
+
+
+# //*[@id="genre_16"]/div/div/ul/li[1]
+# //*[@id="genre_14"]/div[2]/div/ul/li[1]
+# //*[@id="genre_15"]/div[2]/div/ul/li[1]
+# //*[@id="genre_18"]/div[2]/div/ul/li[1]
+
+
+
+
+
+
+
 
 SPORTS_NUM = 3008
 

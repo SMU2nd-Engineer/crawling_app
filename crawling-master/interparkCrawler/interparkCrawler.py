@@ -1,6 +1,7 @@
 from interparkCrawler.base import get_driver
 from interparkCrawler.crawler import crawl_genre
 from interparkCrawler.crawler_sports import crawl_sports
+from datetime import datetime
 
 import pandas as pd
 import os
@@ -64,8 +65,14 @@ def interparkCrawler():
   return total_data
 
 def save_interpark_to_excel():
+  # 현재 날짜 및 시간 가져오기
+  now = datetime.now()
+  timestamp = now.strftime('%Y-%m-%d_%H-%M-%S')
+
   dir_name = 'data/interpark'
-  file_path = os.path.join(dir_name, 'interparkTicket.xlsx')
+  file_name = f'interparkTicket_{timestamp}.xlsx'
+  file_path = os.path.join(dir_name, file_name)
+
   total_data = interparkCrawler()
 
   # 파일 경로 존재 여부 확인 및 폴더 생성

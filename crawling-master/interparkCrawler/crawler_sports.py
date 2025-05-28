@@ -88,12 +88,12 @@ def sports_ticket_info(driver, count_ticket, img, current_url):
       sports_ticket['edate'].append(edate)
       sports_ticket['pdate'].append(pdate)
       sports_ticket['place'].append(place)
-      sports_ticket['price'].append(0)
+      sports_ticket['price'].append('')
       sports_ticket['grade'].append('전연령')
       sports_ticket['cast'].append('')
-      sports_ticket['runningtime'].append('')
+      sports_ticket['runningtime'].append(etc)
       sports_ticket['img'].append(img)
-      sports_ticket['etc'].append(etc)
+      sports_ticket['etc'].append('')
 
       print({k: sports_ticket[k][-1] for k in sports_ticket})
 

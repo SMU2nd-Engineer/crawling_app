@@ -30,6 +30,7 @@ def crawlPerformance():
 
         for genreNum in GENRE_NUM_LIST:
             listLength[genreNum] = len(driver.find_elements(By.XPATH, f'//*[@id="genre_{genreNum}"]/div/div/ul/li'))
+            time.sleep(1)
 
         # 카테고리 버튼 한 번씩 클릭
         for locationNum in range(1, len(GENRE_NUM_LIST) + 1):
@@ -37,6 +38,10 @@ def crawlPerformance():
             tabButton = driver.find_element(By.XPATH, f'//*[@id="content"]/section[2]/div[1]/div/ul/li[{locationNum}]/button')
             tabButton.click() 
             time.sleep(1)
+
+            # //*[@id="content"]/section[2]/div[1]/div/ul/li[1]
+            # //*[@id="content"]/section[2]/div[1]/div/ul/li[2]
+            # //*[@id="content"]/section[2]/div[1]/div/ul/li[7]
 
             # 스크롤 위치 저장
             scrollHeight = driver.execute_script("return window.pageYOffset;")
@@ -52,7 +57,10 @@ def crawlPerformance():
             time.sleep(2)
 
             try:
-              selectedElement = driver.find_element(By.XPATH, f'//*[@id="genre_{GENRE_NUM_LIST[locationNum-1]}"]/div/div/ul/li[{liNum}]')
+              if GENRE_NUM_LIST[locationNum-1] == 16:
+                selectedElement = driver.find_element(By.XPATH, f'//*[@id="genre_{GENRE_NUM_LIST[locationNum-1]}"]/div/div/ul/li[{liNum}]')
+              else :
+                 selectedElement = driver.find_element(By.XPATH, f'//*[@id="genre_{GENRE_NUM_LIST[locationNum-1]}"]/div[2]/div/ul/li[{liNum}]')
               time.sleep(2)
 
               # 상세정보 클릭
