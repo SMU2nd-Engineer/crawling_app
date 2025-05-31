@@ -69,7 +69,7 @@ def crawlSports(teams: dict, genre: int) -> pd.DataFrame:
                         'company': "티켓링크",
                         'link': link,
                         'sdate': date,
-                        'edate': "",
+                        'edate': date,
                         'place': place,
                         'price': "",
                         'grade': "전연령",
