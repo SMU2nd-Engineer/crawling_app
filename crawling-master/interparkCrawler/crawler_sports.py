@@ -125,7 +125,9 @@ def crawl_sports(driver, sport_url):
   if count_card == []:
     k = 0
     img = ''
-    current_url = driver.current_url
+
+  current_url = driver.current_url
+  
   while k <= len(count_card):
     if k > 1:
       driver.back()

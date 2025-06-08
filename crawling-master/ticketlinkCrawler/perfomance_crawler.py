@@ -7,8 +7,9 @@ from .config import CATEGORY_DICT, GENRE_NUM_LIST
 
 def crawlPerformance():
     driver = create_driver(headless=False)
+    driver.maximize_window()
     url = "https://www.ticketlink.co.kr/local"
-    driver.get(url)
+    driver.get(url)    
     time.sleep(2)
 
     detailDataList = []
